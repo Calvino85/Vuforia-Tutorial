@@ -43,15 +43,18 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter( Collision collision )
     {
-		//We've hit something, so explode
-		Explode();
+        if (collision.gameObject.layer != 8)
+        { 
+		    //We've hit something, so explode
+		    Explode();
 
-		//Try to get a Target script off of the thing we hit
-		Target target = collision.gameObject.GetComponent<Target>();
+		    //Try to get a Target script off of the thing we hit
+		    Target target = collision.gameObject.GetComponent<Target>();
 
-		//If there was a Target script on the thing we hit, tell it we hit it
-		if ( target != null )
-			target.Hit();
+		    //If there was a Target script on the thing we hit, tell it we hit it
+		    if ( target != null )
+			    target.Hit();
+        }
     }
 
     void Explode()
